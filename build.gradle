@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'checkstyle'
+    id 'maven-publish'
 }
 
 group = 'com.sursindmitry'
@@ -24,4 +25,31 @@ repositories {
 dependencies {
     implementation "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
     compileOnly "org.projectlombok:lombok:$lombokVersion"
+}
+
+javadoc {
+    options.encoding = 'UTF-8'
+
+    options.links("https://docs.oracle.com/en/java/javase/17/docs/api/")
+
+    options.addBooleanOption('html5', true)
+
+    options.addBooleanOption('Xdoclint:all,-missing', true)
+
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            groupId = group
+            artifactId = 'common-models'
+            version = version
+        }
+    }
+
+    repositories {
+        mavenLocal()
+    }
 }
