@@ -1,5 +1,6 @@
 package com.sursindmitry.commonmodels.kafka;
 
+import com.sursindmitry.commonmodels.kafka.enums.UserEventStatus;
 import java.util.UUID;
 
 /**
@@ -14,8 +15,6 @@ public record UserEvent(
     String name,
     String lastName,
     String email,
-    boolean isArchived,
-    String created,
-    String updated
+    UserEventStatus status
 ) {
 }
